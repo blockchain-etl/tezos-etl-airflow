@@ -1,0 +1,2 @@
+This table contains a set of all blocks in the blockchain and their attributes.
+Data is exported using https://github.com/blockchain-etl/tezos-etl

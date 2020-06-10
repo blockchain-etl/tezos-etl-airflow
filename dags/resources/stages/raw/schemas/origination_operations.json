@@ -1,0 +1,108 @@
+[
+    {
+        "name": "level",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": ""
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "branch",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "signature",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "operation_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "operation_group_id",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "operation_id",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "operation_address",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "source",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "delegate",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "manager_public_key",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "fee",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "counter",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "gas_limit",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "storage_limit",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "status",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "balance",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "script",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "originated_contracts",
+        "type": "STRING",
+        "mode": "REPEATED",
+        "description": ""
+    },
+    {
+        "name": "raw",
+        "type": "STRING",
+        "description": ""
+    }
+]

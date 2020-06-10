@@ -1,0 +1,67 @@
+[
+    {
+        "name": "level",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": ""
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "branch",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "signature",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "operation_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "operation_group_id",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "operation_id",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "period",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "source",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "proposal",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "ballot",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "raw",
+        "type": "STRING",
+        "description": ""
+    }
+]

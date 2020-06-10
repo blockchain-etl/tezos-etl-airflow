@@ -1,0 +1,52 @@
+[
+    {
+        "name": "level",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": ""
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "type",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "operation_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "kind",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "contract",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "change",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "delegate",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "category",
+        "type": "STRING",
+        "description": ""
+    }
+]

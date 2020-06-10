@@ -1,0 +1,113 @@
+[
+    {
+        "name": "level",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "proto",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "predecessor",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": ""
+    },
+    {
+        "name": "validation_pass",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "operations_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "fitness",
+        "type": "STRING",
+        "mode": "REPEATED",
+        "description": ""
+    },
+    {
+        "name": "context",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "protocol",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "chain_id",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "nonce_hash",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "consumed_gas",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "baker",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "voting_period_kind",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "cycle",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "cycle_position",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "voting_period",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "voting_period_position",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "expected_commitment",
+        "type": "BOOLEAN",
+        "description": ""
+    },
+    {
+        "name": "number_of_operation_groups",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "number_of_operations",
+        "type": "INTEGER",
+        "description": ""
+    }
+]

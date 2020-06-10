@@ -1,0 +1,2 @@
+This table contains a set of all transactions from all blocks, and contains a block identifier to get associated block-specific information associated with each transaction.
+Data is exported using https://github.com/blockchain-etl/tezos-etl
