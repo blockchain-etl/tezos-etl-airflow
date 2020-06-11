@@ -30,12 +30,12 @@
         "description": ""
     },
     {
-        "name": "operation_group_id",
+        "name": "operation_group_index",
         "type": "INTEGER",
         "description": ""
     },
     {
-        "name": "operation_id",
+        "name": "operation_index",
         "type": "INTEGER",
         "description": ""
     },

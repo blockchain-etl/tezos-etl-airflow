@@ -6,6 +6,8 @@ import os
 import time
 from datetime import datetime, timedelta
 
+from tezosetl.enums.operations_types import OperationType
+
 from airflow import models
 from airflow.contrib.operators.bigquery_operator import BigQueryOperator
 from airflow.contrib.sensors.gcs_sensor import GoogleCloudStorageObjectSensor
@@ -71,14 +73,14 @@ def build_load_dag(
     dags_folder = os.environ.get('DAGS_FOLDER', '/home/airflow/gcs/dags')
 
     def add_load_tasks(task, file_format='json', time_partitioning_field='timestamp'):
-        task_without_s = task[0:-1]
+        task = task[0:-1]
         # wait_sensor = GoogleCloudStorageObjectSensor(
         #     task_id='wait_latest_{task}'.format(task=task),
         #     timeout=60 * 60,
         #     poke_interval=60,
         #     bucket=output_bucket,
         #     object='export/{task}/block_date={datestamp}/{task}.{file_format}'.format(
-        #         task=task_without_s, datestamp='{{ds}}', file_format=file_format),
+        #         task=task, datestamp='{{ds}}', file_format=file_format),
         #     dag=dag
         # )
 
@@ -95,7 +97,7 @@ def build_load_dag(
 
             export_location_uri = 'gs://{bucket}/export'.format(bucket=output_bucket)
             uri = '{export_location_uri}/{task}/*.{file_format}'.format(
-                export_location_uri=export_location_uri, task=task_without_s, file_format=file_format)
+                export_location_uri=export_location_uri, task=task, file_format=file_format)
             table_ref = create_dataset(client, dataset_name_raw).table(task)
             load_job = client.load_table_from_uri(uri, table_ref, job_config=job_config)
             submit_bigquery_job(load_job, job_config)
@@ -131,9 +133,7 @@ def build_load_dag(
             schema = read_bigquery_schema_from_file(schema_path)
             table = bigquery.Table(temp_table_ref, schema=schema)
 
-            description_path = os.path.join(
-                dags_folder, 'resources/stages/enrich/descriptions/{task}.txt'.format(task=task))
-            table.description = read_file(description_path)
+            table.description = read_file('Data is exported using https://github.com/blockchain-etl/tezos-etl')
             if time_partitioning_field is not None:
                 table.time_partitioning = TimePartitioning(field=time_partitioning_field)
             logging.info('Creating table: ' + json.dumps(table.to_api_repr()))
@@ -220,21 +220,7 @@ def build_load_dag(
                 dependency >> verify_task
         return verify_task
 
-    all_tables = [
-        'blocks',
-        'balance_updates',
-        'activate_account_operations',
-        'ballot_operations',
-        'delegation_operations',
-        'double_baking_evidence_operations',
-        'double_endorsement_evidence_operations',
-        'endorsement_operations',
-        'origination_operations',
-        'proposals_operations',
-        'reveal_operations',
-        'seed_nonce_revelation_operations',
-        'transaction_operations',
-    ]
+    all_tables = ['blocks', 'balance_updates'] + [f'{ot}_operations' for ot in OperationType.ALL]
 
     task_map = {
         'load': {}
