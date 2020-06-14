@@ -22,7 +22,6 @@ def read_export_dag_vars(var_prefix, **kwargs):
         'notification_emails': read_var('notification_emails', None, False, **kwargs),
         'export_max_active_runs': export_max_active_runs,
         'export_max_workers': int(read_var('export_max_workers', var_prefix, True, **kwargs)),
-        'export_batch_size': int(read_var('export_batch_size', var_prefix, True, **kwargs)),
     }
 
     return vars
@@ -34,26 +33,12 @@ def read_load_dag_vars(var_prefix, **kwargs):
         'destination_dataset_project_id': read_var('destination_dataset_project_id', var_prefix, True, **kwargs),
         'notification_emails': read_var('notification_emails', None, False, **kwargs),
         'schedule_interval': read_var('schedule_interval', var_prefix, True, **kwargs),
-        'load_all_partitions': parse_bool(read_var('load_all_partitions', var_prefix, True, **kwargs))
     }
 
     load_start_date = read_var('load_start_date', vars, False, **kwargs)
     if load_start_date is not None:
         load_start_date = datetime.strptime(load_start_date, '%Y-%m-%d')
         vars['load_start_date'] = load_start_date
-
-    return vars
-
-
-def read_verify_streaming_dag_vars(var_prefix, **kwargs):
-    vars = {
-        'destination_dataset_project_id': read_var('destination_dataset_project_id', var_prefix, True, **kwargs),
-        'notification_emails': read_var('notification_emails', None, False, **kwargs),
-    }
-
-    max_lag_in_minutes = read_var('max_lag_in_minutes', var_prefix, False, **kwargs)
-    if max_lag_in_minutes is not None:
-        vars['max_lag_in_minutes'] = max_lag_in_minutes
 
     return vars
 

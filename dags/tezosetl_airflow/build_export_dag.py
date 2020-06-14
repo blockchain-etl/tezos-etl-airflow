@@ -10,9 +10,9 @@ from airflow.operators import python_operator
 
 from tezosetl.cli import (
     get_block_range_for_date,
-    export_blocks,
+    export,
 )
-from tezosetl.enums.operations_types import OperationType
+from tezosetl.enums.operation_types import OperationType
 
 from tezosetl_airflow.gcs_utils import upload_to_gcs, download_from_gcs
 
@@ -93,12 +93,13 @@ def build_export_dag(
             logging.info('Calling export_blocks({}, {}, {}, {}, {})'.format(
                 start_block, end_block, provider_uri, export_max_workers, tempdir))
 
-            export_blocks.callback(
+            export.callback(
                 start_block=start_block,
                 end_block=end_block,
                 provider_uri=provider_uri,
                 max_workers=export_max_workers,
                 output_dir=tempdir,
+                output_format='json'
             )
 
             copy_to_export_path(

@@ -4,6 +4,8 @@ import logging
 from google.cloud import bigquery
 from google.api_core.exceptions import Conflict, NotFound
 
+from tezosetl_airflow.file_utils import read_file
+
 
 def create_dataset(client, dataset_name, project=None):
     dataset = client.dataset(dataset_name, project=project)
@@ -27,6 +29,12 @@ def submit_bigquery_job(job, configuration):
     except Exception:
         logging.info(job.errors)
         raise
+
+
+def read_bigquery_schema_from_file(filepath):
+    file_content = read_file(filepath)
+    json_content = json.loads(file_content)
+    return read_bigquery_schema_from_json_recursive(json_content)
 
 
 def read_bigquery_schema_from_json_recursive(json_schema):
