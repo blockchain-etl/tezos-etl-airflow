@@ -85,6 +85,7 @@ def create_view(bigquery_client, sql, table_ref):
         # https://cloud.google.com/bigquery/docs/managing-views
         table = bigquery_client.update_table(table, ['view_query'])
     assert table.table_id == table_ref.table_id
+    return table
 
 
 def does_table_exist(bigquery_client, table_ref):

@@ -40,17 +40,17 @@
         "description": ""
     },
     {
+        "name": "internal_operation_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
         "name": "public_key_hash",
         "type": "STRING",
         "description": ""
     },
     {
         "name": "secret",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "raw",
         "type": "STRING",
         "description": ""
     }

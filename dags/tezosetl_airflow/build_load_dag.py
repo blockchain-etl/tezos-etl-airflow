@@ -13,7 +13,8 @@ from google.cloud import bigquery
 from google.cloud.bigquery import TimePartitioning
 from tezosetl.enums.operation_types import OperationType
 
-from tezosetl_airflow.bigquery_utils import submit_bigquery_job, create_dataset, read_bigquery_schema_from_file
+from tezosetl_airflow.bigquery_utils import submit_bigquery_job, create_dataset, read_bigquery_schema_from_file, \
+    create_view
 from tezosetl_airflow.file_utils import read_file
 
 logging.basicConfig()
@@ -49,6 +50,12 @@ def build_load_dag(
     if notification_emails and len(notification_emails) > 0:
         default_dag_args['email'] = [email.strip() for email in notification_emails.split(',')]
 
+    environment = {
+        'dataset_name': dataset_name,
+        'destination_dataset_project_id': destination_dataset_project_id,
+        'operation_types': OperationType.ALL,
+    }
+
     # Define a DAG (directed acyclic graph) of tasks.
     dag = models.DAG(
         dag_id,
@@ -71,7 +78,7 @@ def build_load_dag(
         def load_task():
             client = bigquery.Client()
             job_config = bigquery.LoadJobConfig()
-            schema_path = os.path.join(dags_folder, 'resources/stages/raw/schemas/{task}.json'.format(task=task))
+            schema_path = os.path.join(dags_folder, 'resources/stages/load/schemas/{task}.json'.format(task=task))
             job_config.schema = read_bigquery_schema_from_file(schema_path)
             job_config.source_format = bigquery.SourceFormat.NEWLINE_DELIMITED_JSON
             job_config.write_disposition = 'WRITE_TRUNCATE'
@@ -95,16 +102,44 @@ def build_load_dag(
         wait_sensor >> load_operator
         return load_operator
 
+    def add_create_operations_view_tasks(dependencies=None):
+        def create_view_task(ds, **kwargs):
+
+            template_context = kwargs.copy()
+            template_context['ds'] = ds
+            template_context['params'] = environment
+
+            client = bigquery.Client()
+
+            dest_table_name = 'operations'
+            dest_table_ref = create_dataset(client, dataset_name, project=destination_dataset_project_id).table(dest_table_name)
+
+            sql_path = os.path.join(dags_folder, 'resources/stages/load/sqls/operations.sql')
+            sql_template = read_file(sql_path)
+            sql = kwargs['task'].render_template('', sql_template, template_context)
+            print('operations view: \n' + sql)
+
+            create_view(client, sql, dest_table_ref)
+
+        create_view_operator = PythonOperator(
+            task_id='create_operations_view',
+            python_callable=create_view_task,
+            provide_context=True,
+            execution_timeout=timedelta(minutes=60),
+            dag=dag
+        )
+
+        if dependencies is not None and len(dependencies) > 0:
+            for dependency in dependencies:
+                dependency >> create_view_operator
+        return create_view_operator
+
     def add_verify_tasks(task, dependencies=None):
         # The queries in verify/sqls will fail when the condition is not met
         # Have to use this trick since the Python 2 version of BigQueryCheckOperator doesn't support standard SQL
         # and legacy SQL can't be used to query partitioned tables.
         sql_path = os.path.join(dags_folder, 'resources/stages/verify/sqls/{task}.sql'.format(task=task))
         sql = read_file(sql_path)
-        environment = {
-            'dataset_name': dataset_name,
-            'destination_dataset_project_id': destination_dataset_project_id
-        }
         verify_task = BigQueryOperator(
             task_id='verify_{task}'.format(task=task),
             bql=sql,
@@ -123,7 +158,12 @@ def build_load_dag(
         load_task = add_load_tasks(table)
         load_tasks[table] = load_task
 
-    verify_blocks_count_task = add_verify_tasks('blocks_count', [load_tasks['blocks']])
+    create_operations_view_task = add_create_operations_view_tasks(dependencies=load_tasks.values())
+
+    verify_blocks_count_task = add_verify_tasks('blocks_count', dependencies=[load_tasks['blocks']])
+    verify_blocks_have_latest_task = add_verify_tasks('blocks_have_latest', dependencies=[load_tasks['blocks']])
+    verify_operations_count_task = add_verify_tasks('operations_count',
+                                                    dependencies=[load_tasks.values()] + [create_operations_view_task])
 
     if notification_emails and len(notification_emails) > 0:
         send_email_task = EmailOperator(
@@ -134,5 +174,7 @@ def build_load_dag(
             dag=dag
         )
         verify_blocks_count_task >> send_email_task
+        verify_blocks_have_latest_task >> send_email_task
+        verify_operations_count_task >> send_email_task
 
     return dag

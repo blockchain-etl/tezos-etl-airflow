@@ -40,13 +40,24 @@
         "description": ""
     },
     {
-        "name": "nonce",
+        "name": "internal_operation_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "delegate",
         "type": "STRING",
         "description": ""
     },
     {
-        "name": "raw",
+        "name": "public_key",
         "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "slots",
+        "type": "INTEGER",
+        "mode": "REPEATED",
         "description": ""
     }
 ]

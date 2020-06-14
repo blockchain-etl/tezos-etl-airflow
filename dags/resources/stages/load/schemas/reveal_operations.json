@@ -50,12 +50,7 @@
         "description": ""
     },
     {
-        "name": "delegate",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "manager_public_key",
+        "name": "public_key",
         "type": "STRING",
         "description": ""
     },
@@ -81,27 +76,6 @@
     },
     {
         "name": "status",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "balance",
-        "type": "INTEGER",
-        "description": ""
-    },
-    {
-        "name": "script",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "originated_contracts",
-        "type": "STRING",
-        "mode": "REPEATED",
-        "description": ""
-    },
-    {
-        "name": "raw",
         "type": "STRING",
         "description": ""
     }

@@ -50,17 +50,17 @@
         "description": ""
     },
     {
-        "name": "destination",
+        "name": "delegate",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "manager_public_key",
         "type": "STRING",
         "description": ""
     },
     {
         "name": "fee",
-        "type": "INTEGER",
-        "description": ""
-    },
-    {
-        "name": "amount",
         "type": "INTEGER",
         "description": ""
     },
@@ -85,23 +85,19 @@
         "description": ""
     },
     {
-        "name": "consumed_gas",
+        "name": "balance",
         "type": "INTEGER",
         "description": ""
     },
     {
-        "name": "storage_size",
-        "type": "INTEGER",
-        "description": ""
-    },
-    {
-        "name": "parameters",
+        "name": "script",
         "type": "STRING",
         "description": ""
     },
     {
-        "name": "raw",
+        "name": "originated_contracts",
         "type": "STRING",
+        "mode": "REPEATED",
         "description": ""
     }
 ]

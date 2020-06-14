@@ -40,37 +40,27 @@
         "description": ""
     },
     {
-        "name": "denounced_1_branch",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "denounced_1_signature",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "denounced_1_level",
+        "name": "internal_operation_index",
         "type": "INTEGER",
         "description": ""
     },
     {
-        "name": "denounced_2_branch",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "denounced_2_signature",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "denounced_2_level",
+        "name": "period",
         "type": "INTEGER",
         "description": ""
     },
     {
-        "name": "raw",
+        "name": "source",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "proposal",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "ballot",
         "type": "STRING",
         "description": ""
     }

@@ -119,6 +119,10 @@ def build_export_dag(
                 remote_path = export_path(f"{operation_type}_operations", execution_date)
                 if os.path.exists(local_path):
                     copy_to_export_path(local_path, remote_path)
+                else:
+                    # Upload an empty file to indicate export of operations is finished
+                    open(local_path, mode='a').close()
+                    copy_to_export_path(local_path, remote_path)
 
     def add_export_task(toggle, task_id, python_callable, dependencies=None):
         if toggle:
@@ -139,7 +143,7 @@ def build_export_dag(
 
     # Operators
 
-    export_blocks_operator = add_export_task(
+    add_export_task(
         True,
         "export_blocks",
         add_provider_uri_fallback_loop(export_blocks_command, provider_uris),

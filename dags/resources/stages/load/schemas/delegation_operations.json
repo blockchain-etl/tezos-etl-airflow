@@ -78,10 +78,5 @@
         "name": "status",
         "type": "STRING",
         "description": ""
-    },
-    {
-        "name": "raw",
-        "type": "STRING",
-        "description": ""
     }
 ]

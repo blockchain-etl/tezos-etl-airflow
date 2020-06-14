@@ -40,6 +40,11 @@
         "description": ""
     },
     {
+        "name": "internal_operation_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
         "name": "denounced_1_level",
         "type": "INTEGER",
         "description": ""
@@ -148,11 +153,6 @@
     },
     {
         "name": "denounced_2_signature",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "raw",
         "type": "STRING",
         "description": ""
     }

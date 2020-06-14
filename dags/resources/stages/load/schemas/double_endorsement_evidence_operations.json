@@ -40,24 +40,38 @@
         "description": ""
     },
     {
-        "name": "delegate",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "public_key",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "slots",
+        "name": "internal_operation_index",
         "type": "INTEGER",
-        "mode": "REPEATED",
         "description": ""
     },
     {
-        "name": "raw",
+        "name": "denounced_1_branch",
         "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "denounced_1_signature",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "denounced_1_level",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "denounced_2_branch",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "denounced_2_signature",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "denounced_2_level",
+        "type": "INTEGER",
         "description": ""
     }
 ]

@@ -1,10 +1,11 @@
-select if(
+SELECT IF(
 (
-select max(number) from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.blocks`
-where date(timestamp) <= '{{ds}}'
-) =
+    SELECT MAX(level)
+    FROM `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.blocks`
+    WHERE DATE(TIMESTAMP) <= '{{ds}}'
+) + 1 =
 (
-select count(*) from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.blocks`
-where date(timestamp) <= '{{ds}}'
+    SELECT COUNT(*) FROM `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.blocks`
+    WHERE DATE(TIMESTAMP) <= '{{ds}}'
 ), 1,
-cast((select 'Total number of blocks is not equal to last block number {{ds}}') as int64))
+CAST((SELECT 'Total number of blocks is not equal to last block number {{ds}}') AS INT64))

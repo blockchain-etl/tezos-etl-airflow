@@ -40,27 +40,12 @@
         "description": ""
     },
     {
-        "name": "period",
+        "name": "internal_operation_index",
         "type": "INTEGER",
         "description": ""
     },
     {
-        "name": "source",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "proposal",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "ballot",
-        "type": "STRING",
-        "description": ""
-    },
-    {
-        "name": "raw",
+        "name": "nonce",
         "type": "STRING",
         "description": ""
     }

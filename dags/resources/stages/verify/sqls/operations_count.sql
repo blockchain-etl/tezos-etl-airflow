@@ -1,12 +1,13 @@
-select if(
+SELECT IF(
 (
-select sum(action_count)
-from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.transactions`
-where date(block_timestamp) <= '{{ds}}'
+    SELECT SUM(number_of_operations)
+    FROM `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.blocks`
+    WHERE DATE(timestamp) <= '{{ds}}'
 ) =
 (
-select count(*)
-from `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.actions`
-where date(block_timestamp) <= '{{ds}}'
+    SELECT COUNT(*)
+    FROM `{{params.destination_dataset_project_id}}.{{params.dataset_name}}.operations`
+    WHERE DATE(timestamp) <= '{{ds}}'
+        AND internal_operation_index IS NULL
 ), 1,
-cast((select 'Total number of actions is not equal to sum of action_count in transactions table') as int64))
+CAST((SELECT 'Total number of operations is not equal to sum of number_of_operations in blocks table') AS INT64))
