@@ -73,7 +73,6 @@ def build_load_dag(
     dags_folder = os.environ.get('DAGS_FOLDER', '/home/airflow/gcs/dags')
 
     def add_load_tasks(task, file_format='json', time_partitioning_field='timestamp'):
-        task = task[0:-1]
         # wait_sensor = GoogleCloudStorageObjectSensor(
         #     task_id='wait_latest_{task}'.format(task=task),
         #     timeout=60 * 60,
@@ -226,8 +225,8 @@ def build_load_dag(
         'load': {}
     }
     for table in all_tables:
-        load__task = add_load_tasks(table)
-        task_map['load'][table] = load__task
+        load_task = add_load_tasks(table)
+        task_map['load'][table] = load_task
 
     return dag
 

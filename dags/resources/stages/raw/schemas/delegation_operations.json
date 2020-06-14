@@ -41,7 +41,7 @@
     },
     {
         "name": "internal_operation_index",
-        "type": "STRING",
+        "type": "INTEGER",
         "description": ""
     },
     {
