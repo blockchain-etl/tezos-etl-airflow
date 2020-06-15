@@ -9,6 +9,7 @@ SELECT
     operation_hash,
     operation_group_index,
     operation_index,
+    content_index,
     internal_operation_index,
     '{{operation_type}}' AS operation_kind
 FROM

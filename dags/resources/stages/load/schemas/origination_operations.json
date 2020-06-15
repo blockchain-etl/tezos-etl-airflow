@@ -40,6 +40,11 @@
         "description": ""
     },
     {
+        "name": "content_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
         "name": "internal_operation_index",
         "type": "INTEGER",
         "description": ""

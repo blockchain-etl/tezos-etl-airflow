@@ -25,6 +25,26 @@
         "description": ""
     },
     {
+        "name": "operation_group_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "operation_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "content_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "internal_operation_index",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
         "name": "kind",
         "type": "STRING",
         "description": ""
