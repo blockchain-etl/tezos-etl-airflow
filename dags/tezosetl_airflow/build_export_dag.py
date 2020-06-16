@@ -12,7 +12,7 @@ from tezosetl.cli import (
     get_block_range_for_date,
     export,
 )
-from tezosetl.enums.operation_types import OperationType
+from tezosetl.enums.operation_kinds import OperationKind
 
 from tezosetl_airflow.gcs_utils import upload_to_gcs, download_from_gcs
 
@@ -114,7 +114,7 @@ def build_export_dag(
                 os.path.join(tempdir, "balance_updates.json"), export_path("balance_updates", execution_date)
             )
 
-            for operation_type in OperationType.ALL:
+            for operation_type in OperationKind.ALL:
                 local_path = os.path.join(tempdir, f"{operation_type}_operations.json")
                 remote_path = export_path(f"{operation_type}_operations", execution_date)
                 if os.path.exists(local_path):

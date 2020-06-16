@@ -11,7 +11,7 @@ from airflow.operators.email_operator import EmailOperator
 from airflow.operators.python_operator import PythonOperator
 from google.cloud import bigquery
 from google.cloud.bigquery import TimePartitioning
-from tezosetl.enums.operation_types import OperationType
+from tezosetl.enums.operation_kinds import OperationKind
 
 from tezosetl_airflow.bigquery_utils import submit_bigquery_job, create_dataset, read_bigquery_schema_from_file, \
     create_view
@@ -53,7 +53,7 @@ def build_load_dag(
     environment = {
         'dataset_name': dataset_name,
         'destination_dataset_project_id': destination_dataset_project_id,
-        'operation_types': OperationType.ALL,
+        'operation_types': OperationKind.ALL,
     }
 
     # Define a DAG (directed acyclic graph) of tasks.
@@ -151,7 +151,7 @@ def build_load_dag(
                 dependency >> verify_task
         return verify_task
 
-    all_tables = ['blocks', 'balance_updates'] + [f'{ot}_operations' for ot in OperationType.ALL]
+    all_tables = ['blocks', 'balance_updates'] + [f'{ot}_operations' for ot in OperationKind.ALL]
 
     load_tasks = {}
     for table in all_tables:
