@@ -28,7 +28,7 @@ def build_load_dag(
         chain='tezos',
         notification_emails=None,
         load_start_date=datetime(2018, 6, 30),
-        schedule_interval='0 0 * * *'
+        load_schedule_interval='0 0 * * *'
 ):
     # Environment variable OUTPUT_BUCKET must be set and point to the GCS bucket
     # where files exported by export_dag.py are located
@@ -60,7 +60,7 @@ def build_load_dag(
     dag = models.DAG(
         dag_id,
         catchup=False,
-        schedule_interval=schedule_interval,
+        schedule_interval=load_schedule_interval,
         default_args=default_dag_args)
 
     dags_folder = os.environ.get('DAGS_FOLDER', '/home/airflow/gcs/dags')

@@ -23,17 +23,18 @@
 
 3. Upload Airflow variables: 
 
-    - Edit `airflow_variables.json` and update configuration options.
+    - Edit `airflow_variables.json` and update configuration options. 
+      You can find variable documentation in [variables.md](docs/variables.md)
     - Open Airflow UI. You can get its URL from airflowUri configuration option: 
-    `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
+      `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
     - Navigate to **Admin > Variables** in the Airflow UI, click **Choose File**, select `airflow_variables.json`, 
-    and click **Import Variables**.
+      and click **Import Variables**.
     
 4. Upload Airflow DAGs to the GCS bucket. 
     - Get Airflow DAGs URL from dagGcsPrefix configuration option:
-    `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
+      `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
     - Upload DAGs to the bucket. Make sure to replace `<dag_gcs_prefix>` with your value:
-    `./upload_dags.sh <dag_gcs_prefix>`
+      `./upload_dags.sh <dag_gcs_prefix>`
 
 5. Follow these steps to configure email notifications 
 https://cloud.google.com/composer/docs/how-to/managing/creating#notification.

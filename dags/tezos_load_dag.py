@@ -14,6 +14,6 @@ DAG = build_load_dag(
     chain='tezos',
     **read_load_dag_vars(
         var_prefix='tezos_',
-        schedule_interval='0 2 * * *'
+        load_schedule_interval='0 2 * * *'
     )
 )
