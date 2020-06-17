@@ -34,7 +34,9 @@
     - Get Airflow DAGs URL from dagGcsPrefix configuration option:
       `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
     - Upload DAGs to the bucket. Make sure to replace `<dag_gcs_prefix>` with your value:
-      `./upload_dags.sh <dag_gcs_prefix>`
+      `./upload_dags.sh <dag_gcs_prefix>`.
+    - Read an overview of how Airflow DAGs are structured: 
+    https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset.
 
 5. Follow these steps to configure email notifications 
 https://cloud.google.com/composer/docs/how-to/managing/creating#notification.
