@@ -2,58 +2,68 @@
     {
         "name": "level",
         "type": "INTEGER",
-        "description": ""
+        "description": "Block level",
+        "mode": "REQUIRED"
     },
     {
         "name": "proto",
         "type": "INTEGER",
-        "description": ""
+        "description": "",
+        "mode": "REQUIRED"
     },
     {
         "name": "predecessor",
         "type": "STRING",
-        "description": ""
+        "description": "Hash of the previous block",
+        "mode": "REQUIRED"
     },
     {
         "name": "timestamp",
         "type": "TIMESTAMP",
-        "description": ""
+        "description": "Block timestamp",
+        "mode": "REQUIRED"
     },
     {
         "name": "validation_pass",
         "type": "INTEGER",
-        "description": ""
+        "description": "",
+        "mode": "REQUIRED"
     },
     {
         "name": "operations_hash",
         "type": "STRING",
-        "description": ""
+        "description": "Hash of operations (Base58Check-encoded)",
+        "mode": "REQUIRED"
     },
     {
         "name": "fitness",
         "type": "STRING",
-        "mode": "REPEATED",
-        "description": ""
+        "description": "The fitness, or score, of a block, that allow the Tezos to decide which chain is the best",
+        "mode": "REPEATED"
     },
     {
         "name": "context",
         "type": "STRING",
-        "description": ""
+        "description": "Hash of context (Base58Check-encoded)",
+        "mode": "REQUIRED"
     },
     {
         "name": "protocol",
         "type": "STRING",
-        "description": ""
+        "description": "",
+        "mode": "REQUIRED"
     },
     {
         "name": "chain_id",
         "type": "STRING",
-        "description": ""
+        "description": "Network identifier (Base58Check-encoded)",
+        "mode": "REQUIRED"
     },
     {
         "name": "block_hash",
         "type": "STRING",
-        "description": ""
+        "description": "Block identifier (Base58Check-encoded)",
+        "mode": "REQUIRED"
     },
     {
         "name": "nonce_hash",
@@ -63,12 +73,12 @@
     {
         "name": "consumed_gas",
         "type": "INTEGER",
-        "description": ""
+        "description": "Gas consumed in a block"
     },
     {
         "name": "baker",
         "type": "STRING",
-        "description": ""
+        "description": "Public key hash of block baker (Base58Check-encoded)"
     },
     {
         "name": "voting_period_kind",
@@ -103,11 +113,13 @@
     {
         "name": "number_of_operation_groups",
         "type": "INTEGER",
-        "description": ""
+        "description": "The number of operation groups in a block",
+        "mode": "REQUIRED"
     },
     {
         "name": "number_of_operations",
         "type": "INTEGER",
-        "description": ""
+        "description": "The number of operations in a block",
+        "mode": "REQUIRED"
     }
 ]

@@ -1,18 +1,21 @@
 [
-    {
+     {
         "name": "level",
         "type": "INTEGER",
-        "description": ""
+        "description": "Block level",
+        "mode": "REQUIRED"
     },
     {
         "name": "timestamp",
         "type": "TIMESTAMP",
-        "description": ""
+        "description": "Block timestamp",
+        "mode": "REQUIRED"
     },
     {
         "name": "block_hash",
         "type": "STRING",
-        "description": ""
+        "description": "Block hash",
+        "mode": "REQUIRED"
     },
     {
         "name": "branch",
@@ -27,27 +30,31 @@
     {
         "name": "operation_hash",
         "type": "STRING",
-        "description": ""
+        "description": "Operation hash",
+        "mode": "REQUIRED"
     },
     {
         "name": "operation_group_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "Operation group index",
+        "mode": "REQUIRED"
     },
     {
         "name": "operation_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "Operation index",
+        "mode": "REQUIRED"
     },
     {
         "name": "content_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "Operation content index",
+        "mode": "REQUIRED"
     },
     {
         "name": "internal_operation_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "If operation is found in internal operation results, this field contains internal operation index"
     },
     {
         "name": "denounced_1_branch",

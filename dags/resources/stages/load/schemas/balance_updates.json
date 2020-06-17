@@ -2,52 +2,57 @@
     {
         "name": "level",
         "type": "INTEGER",
-        "description": ""
+        "description": "Block level where balance update is found",
+        "mode": "REQUIRED"
     },
     {
         "name": "timestamp",
         "type": "TIMESTAMP",
-        "description": ""
+        "description": "Block timestamp where balance update is found",
+        "mode": "REQUIRED"
     },
     {
         "name": "block_hash",
         "type": "STRING",
-        "description": ""
+        "description": "Block hash where balance update is found",
+        "mode": "REQUIRED"
     },
     {
         "name": "type",
         "type": "STRING",
-        "description": ""
+        "description": "block if balance update is found in a block, operation if balance update is found in an operation",
+        "mode": "REQUIRED"
     },
     {
         "name": "operation_hash",
         "type": "STRING",
-        "description": ""
+        "description": "If type is operation, this field contains hash of the operation where the balance update is found"
     },
     {
         "name": "operation_group_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "If type is operation, this field contains group index of the operation where the balance update is found"
     },
     {
         "name": "operation_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "If type is operation, this field contains index of the operation where the balance update is found"
     },
     {
         "name": "content_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "If type is operation, this field contains content index of the operation where the balance update is found"
     },
     {
         "name": "internal_operation_index",
         "type": "INTEGER",
-        "description": ""
+        "description": "If type is operation and balance update is found in an internal operation results, this field contains internal operation index of the operation where the balance update is found"
     },
     {
         "name": "kind",
         "type": "STRING",
-        "description": ""
+        "description": "One of: contract, freezer, ",
+        "mode": "REQUIRED"
     },
     {
         "name": "contract",
@@ -57,7 +62,8 @@
     {
         "name": "change",
         "type": "INTEGER",
-        "description": ""
+        "description": "Balance change",
+        "mode": "REQUIRED"
     },
     {
         "name": "delegate",
