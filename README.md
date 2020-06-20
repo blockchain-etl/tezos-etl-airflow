@@ -70,7 +70,7 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `tezos_outpu
 
 ## Integration Testing
 
-It is [recommended](https://cloud.google.com/composer/docs/how-to/using/testing-dags) to use a dedicated Cloud Composer
+It is [recommended](https://cloud.google.com/composer/docs/how-to/using/testing-dags#faqs_for_testing_workflows) to use a dedicated Cloud Composer
 environment for integration testing with Airflow.
 
 To run integration tests:
