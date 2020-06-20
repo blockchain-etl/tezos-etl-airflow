@@ -21,25 +21,26 @@
     gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.0.0
     ```
 
-3. Upload Airflow variables: 
+3. Configure Airflow variables: 
 
     - Edit `airflow_variables.json` and update configuration options. 
-      You can find variables description in [variables.md](docs/variables.md). For the `tezos_output_bucket` variable 
+      You can find variables description in [Variables](docs/variables.md). For the `tezos_output_bucket` variable 
       specify the bucket created on step 1 above. You can get it by running `echo $BUCKET`.
     - Open Airflow UI. You can get its URL from `airflowUri` configuration option: 
       `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
     - Navigate to **Admin > Variables** in the Airflow UI, click **Choose File**, select `airflow_variables.json`, 
       and click **Import Variables**.
     
-4. Upload Airflow DAGs to the GCS bucket. 
+4. Upload Airflow DAGs to the GCS bucket:
+ 
     - Get Airflow DAGs URL from `dagGcsPrefix` configuration option:
       `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
     - Upload DAGs to the bucket. Make sure to replace `<dag_gcs_prefix>` with your value:
       `./upload_dags.sh <dag_gcs_prefix>`.
-    - Read an overview of how Airflow DAGs are structured: 
-    https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset.
-    - Note that it will take one or more days for `tezos_export_dag` to export the historical data.
-    - To setup automated deployment of DAGs refer to [cloudbuild.md](/docs/cloudbuild.md)
+    - To understand more about how the Airflow DAGs are structured 
+      read [this article](https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset).
+    - Note that it will take one or more days for `tezos_export_dag` to finish exporting the historical data.
+    - To setup automated deployment of DAGs refer to [Cloud Build](/docs/cloudbuild.md)
 
-5. Follow these steps to configure email notifications 
-https://cloud.google.com/composer/docs/how-to/managing/creating#notification.
+5. Follow the steps [here](https://cloud.google.com/composer/docs/how-to/managing/creating#notification) 
+to configure email notifications.
