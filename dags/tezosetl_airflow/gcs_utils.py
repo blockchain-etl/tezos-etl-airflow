@@ -4,9 +4,11 @@ import os
 MEGABYTE = 1024 * 1024
 
 
-# Helps avoid OverflowError: https://stackoverflow.com/questions/47610283/cant-upload-2gb-to-google-cloud-storage
-# https://developers.google.com/api-client-library/python/guide/media_upload#resumable-media-chunked-upload
 def upload_to_gcs(gcs_hook, bucket, object, filename, mime_type='application/octet-stream'):
+    """Upload a file to GCS. Helps avoid OverflowError:
+    https://stackoverflow.com/questions/47610283/cant-upload-2gb-to-google-cloud-storage,
+    https://developers.google.com/api-client-library/python/guide/media_upload#resumable-media-chunked-upload
+    """
     from apiclient.http import MediaFileUpload
     from googleapiclient import errors
 
@@ -40,8 +42,8 @@ def upload_to_gcs(gcs_hook, bucket, object, filename, mime_type='application/oct
             raise
 
 
-# Can download big files unlike gcs_hook.download which saves files in memory first
 def download_from_gcs(bucket, object, filename):
+    """Download a file from GCS. Can download big files unlike gcs_hook.download which saves files in memory first"""
     from google.cloud import storage
 
     storage_client = storage.Client()

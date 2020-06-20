@@ -28,10 +28,10 @@ def build_load_dag(
         chain='tezos',
         notification_emails=None,
         load_start_date=datetime(2018, 6, 30),
+        load_end_date=None,
         load_schedule_interval='0 0 * * *'
 ):
-    # Environment variable OUTPUT_BUCKET must be set and point to the GCS bucket
-    # where files exported by export_dag.py are located
+    """Build Load DAG"""
 
     dataset_name = f'crypto_{chain}'
 
@@ -41,6 +41,7 @@ def build_load_dag(
     default_dag_args = {
         'depends_on_past': False,
         'start_date': load_start_date,
+        'end_date': load_end_date,
         'email_on_failure': True,
         'email_on_retry': True,
         'retries': 5,
@@ -59,7 +60,7 @@ def build_load_dag(
     # Define a DAG (directed acyclic graph) of tasks.
     dag = models.DAG(
         dag_id,
-        catchup=False,
+        catchup=False if load_end_date is None else True,
         schedule_interval=load_schedule_interval,
         default_args=default_dag_args)
 
