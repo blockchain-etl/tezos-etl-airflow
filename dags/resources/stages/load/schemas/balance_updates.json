@@ -20,7 +20,7 @@
     {
         "name": "type",
         "type": "STRING",
-        "description": "block if balance update is found in a block, operation if balance update is found in an operation",
+        "description": "The type of balance update: block if balance update is found in a block, operation if balance update is found in an operation",
         "mode": "REQUIRED"
     },
     {
@@ -51,13 +51,18 @@
     {
         "name": "kind",
         "type": "STRING",
-        "description": "One of: contract, freezer, ",
+        "description": "The kind of balance update. One of: contract, freezer.",
         "mode": "REQUIRED"
     },
     {
         "name": "contract",
         "type": "STRING",
-        "description": ""
+        "description": "If kind is contract, this field contains contract address."
+    },
+    {
+        "name": "delegate",
+        "type": "STRING",
+        "description": "If kind is freezer, this field contains delegate address."
     },
     {
         "name": "change",
@@ -66,13 +71,8 @@
         "mode": "REQUIRED"
     },
     {
-        "name": "delegate",
-        "type": "STRING",
-        "description": ""
-    },
-    {
         "name": "category",
         "type": "STRING",
-        "description": ""
+        "description": "Balance update category if kind is freezer. One of: rewards, fees, deposits."
     }
 ]

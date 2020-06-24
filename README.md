@@ -18,8 +18,10 @@
         --disk-size=30GB --machine-type=n1-standard-1 --node-count=3 --python-version=3 --image-version=composer-1.8.3-airflow-1.10.3 \
         --network=default --subnetwork=default
     
-    gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.0.1
+    gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.0.2
     ```
+   
+    Note that if Composer API is not enabled the command above will auto prompt to enable it.
 
 3. Follow the steps in [Configuring Airflow Variables](#configuring-airflow-variables) to configure Airfow variables.
     
@@ -59,7 +61,7 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `tezos_outpu
   
 ## Deploying Airflow DAGs
 
-- Get the value from `dagGcsPrefix` configuration option:
+- Get the value from `dagGcsPrefix` configuration option from the output of:
   `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
 - Upload DAGs to the bucket. Make sure to replace `<dag_gcs_prefix>` with the value from the previous step:
   `./upload_dags.sh <dag_gcs_prefix>`.
