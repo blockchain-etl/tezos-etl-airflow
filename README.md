@@ -1,5 +1,11 @@
 # Tezos ETL Airflow
 
+## Prerequisites
+
+* linux/macos terminal 
+* git
+* [gcloud](https://cloud.google.com/sdk/install)
+
 ## Setting Up
 
 1. Create a GCS bucket to hold export files:
@@ -33,6 +39,7 @@ to configure email notifications.
 
 ## Configuring Airflow Variables
 
+- Clone Tezos ETL Airflow: `git clone https://github.com/blockchain-etl/tezos-etl-airflow && cd tezos-etl-airflow`.
 - Edit `airflow_variables.json` and update configuration options. 
   You can find variables description in the table below. For the `tezos_output_bucket` variable 
   specify the bucket created on step 1 above. You can get it by running `echo $BUCKET`.
