@@ -49,20 +49,30 @@
         "description": "If type is operation and balance update is found in an internal operation results, this field contains internal operation index of the operation where the balance update is found"
     },
     {
+        "name": "balance_update_index",
+        "type": "INTEGER",
+        "description": "Balance update index"
+    },
+    {
+        "name": "status",
+        "type": "STRING",
+        "description": "Status of the operation if balance update is associated with an operation"
+    },
+    {
         "name": "kind",
         "type": "STRING",
-        "description": "The kind of balance update. One of: contract, freezer.",
+        "description": "The kind of balance update. One of: contract, freezer",
         "mode": "REQUIRED"
     },
     {
         "name": "contract",
         "type": "STRING",
-        "description": "If kind is contract, this field contains contract address."
+        "description": "If kind is contract, this field contains contract address"
     },
     {
         "name": "delegate",
         "type": "STRING",
-        "description": "If kind is freezer, this field contains delegate address."
+        "description": "If kind is freezer, this field contains delegate address"
     },
     {
         "name": "change",
@@ -73,6 +83,6 @@
     {
         "name": "category",
         "type": "STRING",
-        "description": "Balance update category if kind is freezer. One of: rewards, fees, deposits."
+        "description": "Balance update category if kind is freezer. One of: rewards, fees, deposits"
     }
 ]
