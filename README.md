@@ -75,7 +75,7 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `tezos_outpu
 - To understand more about how the Airflow DAGs are structured 
   read [this article](https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset).
 - Note that it will take one or more days for `tezos_export_dag` to finish exporting the historical data.
-- To setup automated deployment of DAGs refer to [Cloud Build](/docs/cloudbuild.md).
+- To setup automated deployment of DAGs refer to [Cloud Build Configuration](/docs/cloudbuild-configuration.md).
 
 ## Integration Testing
 

@@ -17,4 +17,4 @@ In order to automate deployment of Airflow DAGs to the Cloud Composer bucket, pe
       `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1` and getting 
       the `dagGcsPrefix` config value, 
       where `${ENVIRONMENT_NAME}` is your Cloud Composer environment name):
-        - `_BUCKET`: `<put_your_cloud_composer_bucket_here>`
+        - `_BUCKET`: `<put_your_cloud_composer_bucket_here>`, e.g. `_BUCKET`: `us-central1-bigquery-test0--2dedb4dd-bucket`
