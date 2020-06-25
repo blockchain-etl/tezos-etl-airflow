@@ -20,7 +20,7 @@
     {
         "name": "type",
         "type": "STRING",
-        "description": "The type of balance update: block if balance update is found in a block, operation if balance update is found in an operation",
+        "description": "The type of balance update: block if balance update is found in a block, metadata if balance update is found in operation metadata, operation_result if balance update is found in operation results, internal_operation_result if balance update is found in internal operation result",
         "mode": "REQUIRED"
     },
     {

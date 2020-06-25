@@ -20,12 +20,12 @@
     {
         "name": "branch",
         "type": "STRING",
-        "description": ""
+        "description": "Branch"
     },
     {
         "name": "signature",
         "type": "STRING",
-        "description": ""
+        "description": "Operation signature"
     },
     {
         "name": "operation_hash",
