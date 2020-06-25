@@ -25,7 +25,7 @@ def build_export_dag(
         export_end_date=None,
         notification_emails=None,
         export_schedule_interval='0 0 * * *',
-        export_max_workers=10,
+        export_max_workers=5,
         export_max_active_runs=None,
 ):
     """Build Export DAG"""
