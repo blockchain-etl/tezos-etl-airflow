@@ -2,43 +2,43 @@
     {
         "name": "level",
         "type": "INTEGER",
-        "description": "Block level",
+        "description": "The height of the block, from the genesis block",
         "mode": "REQUIRED"
     },
     {
         "name": "proto",
         "type": "INTEGER",
-        "description": "",
+        "description": "Number of protocol changes since genesis (mod 256)",
         "mode": "REQUIRED"
     },
     {
         "name": "predecessor",
         "type": "STRING",
-        "description": "Hash of the previous block",
+        "description": "The hash of the preceding block",
         "mode": "REQUIRED"
     },
     {
         "name": "timestamp",
         "type": "TIMESTAMP",
-        "description": "Block timestamp",
+        "description": "The timestamp at which the block is claimed to have been created",
         "mode": "REQUIRED"
     },
     {
         "name": "validation_pass",
         "type": "INTEGER",
-        "description": "",
+        "description": "Number of validation passes (also number of lists of lists of operations)",
         "mode": "REQUIRED"
     },
     {
         "name": "operations_hash",
         "type": "STRING",
-        "description": "Hash of operations (Base58Check-encoded)",
+        "description": "The hash of a list of root hashes of Merkle trees of operations. There is one list of operations per validation pass",
         "mode": "REQUIRED"
     },
     {
         "name": "fitness",
         "type": "STRING",
-        "description": "The fitness, or score, of a block, that allow the Tezos to decide which chain is the best",
+        "description": "A sequence of sequences of unsigned bytes, ordered by length and then lexicographically. It represents the claimed fitness of the chain ending in this block",
         "mode": "REPEATED"
     },
     {
@@ -50,7 +50,7 @@
     {
         "name": "protocol",
         "type": "STRING",
-        "description": "",
+        "description": "Protocol version",
         "mode": "REQUIRED"
     },
     {
@@ -68,7 +68,7 @@
     {
         "name": "nonce_hash",
         "type": "STRING",
-        "description": ""
+        "description": "A commitment to a random number, used to generate entropy on the chain"
     },
     {
         "name": "consumed_gas",
@@ -83,32 +83,32 @@
     {
         "name": "voting_period_kind",
         "type": "STRING",
-        "description": ""
+        "description": "The kind of the voting period"
     },
     {
         "name": "cycle",
         "type": "INTEGER",
-        "description": ""
+        "description": "Block cycle"
     },
     {
         "name": "cycle_position",
         "type": "INTEGER",
-        "description": ""
+        "description": "Cycle position"
     },
     {
         "name": "voting_period",
         "type": "INTEGER",
-        "description": ""
+        "description": "Voting period"
     },
     {
         "name": "voting_period_position",
         "type": "INTEGER",
-        "description": ""
+        "description": "Voting period position"
     },
     {
         "name": "expected_commitment",
         "type": "BOOLEAN",
-        "description": ""
+        "description": "Expected commitment"
     },
     {
         "name": "number_of_operation_groups",
