@@ -14,7 +14,7 @@ from tezosetl.cli import (
 )
 from tezosetl.enums.operation_kinds import OperationKind
 
-from tezosetl_airflow.gcs_utils import upload_to_gcs, download_from_gcs
+from tezosetl_airflow.gcs_utils import upload_to_gcs
 
 
 def build_export_dag(
@@ -71,11 +71,6 @@ def build_export_dag(
             object=export_path + filename,
             filename=file_path)
 
-    def copy_from_export_path(export_path, file_path):
-        logging.info('Calling copy_from_export_path({}, {})'.format(export_path, file_path))
-        filename = os.path.basename(file_path)
-        download_from_gcs(bucket=output_bucket, object=export_path + filename, filename=file_path)
-
     def get_block_range(tempdir, date, provider_uri):
         logging.info('Calling get_block_range_for_date({}, {}, ...)'.format(provider_uri, date))
         get_block_range_for_date.callback(
@@ -88,11 +83,11 @@ def build_export_dag(
 
         return int(start_block), int(end_block)
 
-    def export_blocks_command(execution_date, provider_uri, **kwargs):
+    def export_command(execution_date, provider_uri, **kwargs):
         with TemporaryDirectory() as tempdir:
             start_block, end_block = get_block_range(tempdir, execution_date, provider_uri)
 
-            logging.info('Calling export_blocks({}, {}, {}, {}, {})'.format(
+            logging.info('Calling export({}, {}, {}, {}, {})'.format(
                 start_block, end_block, provider_uri, export_max_workers, tempdir))
 
             export.callback(
@@ -147,8 +142,8 @@ def build_export_dag(
 
     add_export_task(
         True,
-        "export_blocks",
-        add_provider_uri_fallback_loop(export_blocks_command, provider_uris),
+        "export",
+        add_provider_uri_fallback_loop(export_command, provider_uris),
     )
 
     return dag

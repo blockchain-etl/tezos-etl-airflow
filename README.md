@@ -24,7 +24,7 @@
         --disk-size=30GB --machine-type=n1-standard-1 --node-count=3 --python-version=3 --image-version=composer-1.8.3-airflow-1.10.3 \
         --network=default --subnetwork=default
     
-    gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.0.2
+    gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.2.1
     ```
    
     Note that if Composer API is not enabled the command above will auto prompt to enable it.
@@ -41,7 +41,7 @@ to configure email notifications.
 
 - Clone Tezos ETL Airflow: `git clone https://github.com/blockchain-etl/tezos-etl-airflow && cd tezos-etl-airflow`.
 - Edit `airflow_variables.json` and update configuration options. 
-  You can find variables description in the table below. For the `tezos_output_bucket` variable 
+  You can find variables description in the table below. For the `mainnet_output_bucket` variable 
   specify the bucket created on step 1 above. You can get it by running `echo $BUCKET`.
 - Open Airflow UI. You can get its URL from `airflowUri` configuration option: 
   `gcloud composer environments describe ${ENVIRONMENT_NAME} --location us-central1`.
@@ -50,7 +50,7 @@ to configure email notifications.
   
 ### Airflow Variables
 
-Note that the variable names must be prefixed with `{chain}_`, e.g. `tezos_output_bucket`. 
+Note that the variable names must be prefixed with `{chain}_`, e.g. `mainnet_output_bucket`. 
 
 | Variable | Description |
 |---|---|
@@ -74,7 +74,7 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `tezos_outpu
   `./upload_dags.sh <dag_gcs_prefix>`.
 - To understand more about how the Airflow DAGs are structured 
   read [this article](https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-how-we-built-dataset).
-- Note that it will take one or more days for `tezos_export_dag` to finish exporting the historical data.
+- Note that it will take one or more days for `mainnet_export_dag` to finish exporting the historical data.
 - To setup automated deployment of DAGs refer to [Cloud Build Configuration](/docs/cloudbuild-configuration.md).
 
 ## Integration Testing

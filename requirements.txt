@@ -1,5 +1,5 @@
 apache-airflow[gcp]==1.10.3
-tezos-etl==1.0.2
+tezos-etl==1.2.1
 flask==1.0.4
 google-cloud-bigquery
 google-cloud-storage
