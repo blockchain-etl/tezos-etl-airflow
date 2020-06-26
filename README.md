@@ -59,7 +59,7 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `mainnet_out
 | `export_end_date` | export end date, used for integration testing, default: None |
 | `export_schedule_interval` | export cron schedule, default: `0 1 * * *` |
 | `provider_uris` | comma-separated list of provider URIs for [tezosetl export](https://tezos-etl.readthedocs.io/en/latest/commands/#export) command |
-| `notification_emails` | comma-separated list of emails where notifications on DAG failures, retries and successes will be delivered |
+| `notification_emails` | comma-separated list of emails where notifications on DAG failures, retries and successes will be delivered. This variable must not be prefixed with `{chain}_` |
 | `export_max_active_runs` | max active DAG runs for export, default: `3` |
 | `export_max_workers` | max workers for [tezosetl export](https://tezos-etl.readthedocs.io/en/latest/commands/#export) command, default: `30` |
 | `destination_dataset_project_id` | GCS project id where destination BigQuery dataset is |
@@ -90,3 +90,18 @@ To run integration tests:
     - `load_end_date`: `2018-06-30`
 - This will run the DAGs only for the first day. At the end of the load DAG the verification tasks will ensure
 the correctness of the result.
+
+## Troubleshooting
+
+To troubleshoot issues with Airflow tasks use **View Log** button in the Airflow console for individual tasks.
+Read [Airflow UI overview](https://airflow.apache.org/docs/stable/ui.html) and 
+[Troubleshooting DAGs](https://cloud.google.com/composer/docs/how-to/using/troubleshooting-dags) for more info. 
+ 
+In rare cases you may need to inspect GKE cluster logs in 
+[GKE console](https://console.cloud.google.com/kubernetes/workload?project=tezos-etl-dev). 
+
+**Speed up the initial export**
+
+To speed up the initial data export it is recommended to use `n1-standard-2` instance type for the Cloud Composer cluster.
+After the initial export is finished a new cluster with `n1-standard-1` should be created with `export_start_date`
+Airflow variable set to the previous date.

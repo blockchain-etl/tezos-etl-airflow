@@ -1,0 +1,32 @@
+[
+    {
+        "name": "level",
+        "type": "INTEGER",
+        "description": "Block level where migration happened"
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": "Block timestamp where migration happened"
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": "Block hash where migration happened"
+    },
+    {
+        "name": "kind",
+        "type": "STRING",
+        "description": "The kind of migration"
+    },
+    {
+        "name": "address",
+        "type": "STRING",
+        "description": "The address that was changed in the migration"
+    },
+    {
+        "name": "balance_change",
+        "type": "INTEGER",
+        "description": "Balance change"
+    }
+]
