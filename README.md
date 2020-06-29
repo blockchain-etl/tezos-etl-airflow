@@ -1,5 +1,8 @@
 # Tezos ETL Airflow
 
+Airflow DAGs for exporting and loading the Tezos blockchain data to Google BigQuery.
+Data is available for you to query right away in [Google BigQuery](https://console.cloud.google.com/bigquery?page=dataset&d=mainnet&p=bigquery-tezos-etl).
+
 ## Prerequisites
 
 * linux/macos terminal 
@@ -11,17 +14,19 @@
 1. Create a GCS bucket to hold export files:
 
     ```bash
+    gcloud config set project <your_gcp_project>
     PROJECT=$(gcloud config get-value project 2> /dev/null)
-    BUCKET=${PROJECT}-0
+    ENVIRONMENT_INDEX=0
+    BUCKET=${PROJECT}-${ENVIRONMENT_INDEX}
     gsutil mb gs://${BUCKET}/
     ```
 
 2. Create a Google Cloud Composer environment:
 
     ```bash
-    ENVIRONMENT_NAME=${PROJECT}-0
+    ENVIRONMENT_NAME=${PROJECT}-${ENVIRONMENT_INDEX} && echo "Environment name is ${ENVIRONMENT_NAME}"
     gcloud composer environments create ${ENVIRONMENT_NAME} --location=us-central1 --zone=us-central1-a \
-        --disk-size=30GB --machine-type=n1-standard-1 --node-count=3 --python-version=3 --image-version=composer-1.8.3-airflow-1.10.3 \
+        --disk-size=30GB --machine-type=custom-1-5120 --node-count=3 --python-version=3 --image-version=composer-1.10.5-airflow-1.10.6 \
         --network=default --subnetwork=default
     
     gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.2.1
@@ -39,8 +44,10 @@ to configure email notifications.
 
 ## Configuring Airflow Variables
 
-- Clone Tezos ETL Airflow: `git clone https://github.com/blockchain-etl/tezos-etl-airflow && cd tezos-etl-airflow`.
-- Edit `airflow_variables.json` and update configuration options. 
+- For a new environment clone Tezos ETL Airflow: `git clone https://github.com/blockchain-etl/tezos-etl-airflow && cd tezos-etl-airflow`. 
+  For an existing environment use the `airflow_variables.json` file from 
+  [Cloud Source Repository](#creating-a-cloud-source-repository-for-airflow-variables) for your environment.
+- Edit `airflow_variables.json` and update configuration options with your values. 
   You can find variables description in the table below. For the `mainnet_output_bucket` variable 
   specify the bucket created on step 1 above. You can get it by running `echo $BUCKET`.
 - Open Airflow UI. You can get its URL from `airflowUri` configuration option: 
@@ -65,6 +72,24 @@ Note that the variable names must be prefixed with `{chain}_`, e.g. `mainnet_out
 | `destination_dataset_project_id` | GCS project id where destination BigQuery dataset is |
 | `load_schedule_interval` | load cron schedule, default: `0 2 * * *` |
 | `load_end_date` | load end date, used for integration testing, default: None |
+
+### Creating a Cloud Source Repository for Airflow variables
+
+It is recommended to keep airflow_variables.json in a version control system e.g. git. 
+Below are the commands for creating a Cloud Source Repository to hold airflow_variables.json: 
+
+```bash
+REPO_NAME=${PROJECT}-airflow-config-${ENVIRONMENT_INDEX} && echo "Repo name ${REPO_NAME}"
+gcloud source repos create ${REPO_NAME}
+gcloud source repos clone ${REPO_NAME} && cd ${REPO_NAME}
+
+# Put airflow_variables.json to the root of the repo
+
+git add airflow_variables.json && git commit -m "Initial commit"
+git push
+
+# TODO: Setup Cloud Build Trigger to deploy variables to Composer environment when updated. For now it has to be done manually.
+```
   
 ## Deploying Airflow DAGs
 
