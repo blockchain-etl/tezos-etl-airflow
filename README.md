@@ -128,5 +128,5 @@ In rare cases you may need to inspect GKE cluster logs in
 **Speed up the initial export**
 
 To speed up the initial data export it is recommended to use `n1-standard-2` instance type for the Cloud Composer cluster.
-After the initial export is finished a new cluster with `n1-standard-1` should be created with `export_start_date`
+After the initial export is finished a new cluster with `custom-1-4096` should be created with `export_start_date`
 Airflow variable set to the previous date.
