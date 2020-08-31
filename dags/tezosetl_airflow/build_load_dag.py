@@ -25,7 +25,7 @@ def build_load_dag(
         dag_id,
         output_bucket,
         destination_dataset_project_id,
-        chain='mainnet',
+        chain='tezos',
         notification_emails=None,
         load_start_date=datetime(2018, 6, 30),
         load_end_date=None,
@@ -33,7 +33,7 @@ def build_load_dag(
 ):
     """Build Load DAG"""
 
-    dataset_name = chain
+    dataset_name = f'crypto_{chain}'
 
     if not destination_dataset_project_id:
         raise ValueError('destination_dataset_project_id is required')
