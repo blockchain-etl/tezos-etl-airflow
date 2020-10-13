@@ -123,7 +123,7 @@ Read [Airflow UI overview](https://airflow.apache.org/docs/stable/ui.html) and
 [Troubleshooting DAGs](https://cloud.google.com/composer/docs/how-to/using/troubleshooting-dags) for more info. 
  
 In rare cases you may need to inspect GKE cluster logs in 
-[GKE console](https://console.cloud.google.com/kubernetes/workload?project=tezos-etl-dev). 
+[GKE console](https://console.cloud.google.com/kubernetes/workload). 
 
 **Speed up the initial export**
 
