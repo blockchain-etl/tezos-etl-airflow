@@ -1,7 +1,7 @@
 # Tezos ETL Airflow
 
 Airflow DAGs for exporting and loading the Tezos blockchain data to Google BigQuery.
-Data is available for you to query right away in [Google BigQuery](https://console.cloud.google.com/bigquery?page=dataset&d=mainnet&p=bigquery-tezos-etl).
+Data is available for you to query right away in [Google BigQuery](https://console.cloud.google.com/bigquery?page=dataset&d=crypto_tezos&p=public-data-finance).
 
 ## Prerequisites
 
