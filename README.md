@@ -26,7 +26,7 @@ Data is available for you to query right away in [Google BigQuery](https://conso
     ```bash
     ENVIRONMENT_NAME=${PROJECT}-${ENVIRONMENT_INDEX} && echo "Environment name is ${ENVIRONMENT_NAME}"
     gcloud composer environments create ${ENVIRONMENT_NAME} --location=us-central1 --zone=us-central1-a \
-        --disk-size=30GB --machine-type=custom-1-4096 --node-count=3 --python-version=3 --image-version=composer-1.8.3-airflow-1.10.3 \
+        --disk-size=30GB --machine-type=custom-1-4096 --node-count=3 --python-version=3 --image-version=composer-1.18.7-airflow-1.10.15 \
         --network=default --subnetwork=default
     
     gcloud composer environments update $ENVIRONMENT_NAME --location=us-central1 --update-pypi-package=tezos-etl==1.2.1
