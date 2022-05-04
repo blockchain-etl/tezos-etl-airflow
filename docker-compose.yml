@@ -18,7 +18,6 @@ services:
           - EXECUTOR=Local
       volumes:
           - ./dags:/usr/local/airflow/dags
-          - ./sql:/usr/local/airflow/sql
           - ~/gcp-key.json:/usr/local/airflow/gcp-key.json
       ports:
           - 8080:8080
