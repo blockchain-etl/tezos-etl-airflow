@@ -1,0 +1,8 @@
+[
+    {
+        "name": "solution",
+        "type": "STRING",
+        "description": "Solution",
+        "mode": "REQUIRED"
+    }
+]
