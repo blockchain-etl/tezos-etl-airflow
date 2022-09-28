@@ -1,0 +1,99 @@
+[
+     {
+        "name": "level",
+        "type": "INTEGER",
+        "description": "Block level",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "timestamp",
+        "type": "TIMESTAMP",
+        "description": "Block timestamp",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "block_hash",
+        "type": "STRING",
+        "description": "Block hash",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "branch",
+        "type": "STRING",
+        "description": "Branch"
+    },
+    {
+        "name": "signature",
+        "type": "STRING",
+        "description": "Operation signature"
+    },
+    {
+        "name": "operation_hash",
+        "type": "STRING",
+        "description": "Operation hash",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "operation_group_index",
+        "type": "INTEGER",
+        "description": "Operation group index",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "operation_index",
+        "type": "INTEGER",
+        "description": "Operation index",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "content_index",
+        "type": "INTEGER",
+        "description": "Operation content index",
+        "mode": "REQUIRED"
+    },
+    {
+        "name": "internal_operation_index",
+        "type": "INTEGER",
+        "description": "If operation is found in internal operation results, this field contains internal operation index"
+    },
+    {
+        "name": "source",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "fee",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "limit",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "counter",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "gas_limit",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "storage_limit",
+        "type": "INTEGER",
+        "description": ""
+    },
+    {
+        "name": "status",
+        "type": "STRING",
+        "description": ""
+    },
+    {
+        "name": "consumed_milligas",
+        "type": "INTEGER",
+        "description": ""
+    }
+]
