@@ -2,5 +2,5 @@
     "mainnet_destination_dataset_project_id": "your_project",
     "mainnet_export_max_active_runs": 3,
     "mainnet_output_bucket": "your_output_bucket",
-    "mainnet_provider_uris": "https://mainnet-tezos.giganode.io"
+    "mainnet_provider_uris": "https://mainnet.api.tez.ie"
 }
