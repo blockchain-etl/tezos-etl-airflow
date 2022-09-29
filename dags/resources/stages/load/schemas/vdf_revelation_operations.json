@@ -2,7 +2,6 @@
     {
         "name": "solution",
         "type": "STRING",
-        "description": "Solution",
-        "mode": "REPEATED"
+        "description": "Solution"
     }
 ]
